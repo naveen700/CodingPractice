@@ -26,6 +26,7 @@ void selectionSort(int arr[] , int num){
         int minIndex = i;
         for(int j= i+1; j < num;j++){
             if(min > arr[j]){
+                min = arr[j];
                 minIndex = j;
             }
         }
@@ -36,7 +37,7 @@ void selectionSort(int arr[] , int num){
     }
 
     for(int i=0 ; i <num; i++){
-        cout<<arr[i]<<endl;
+        cout<<arr[i]<<" ";
     }
 
 }

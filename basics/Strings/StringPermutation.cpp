@@ -1,55 +1,36 @@
 #include <iostream>
 using namespace std;
 
-int fillCharArray(char s[])
-{
-    char ch = cin.get();
-    int i = 0;
-    while (ch != '\n')
-    {
-        s[i] = ch;
-        i++;
-        ch = cin.get();
+void printAllPermutation(char *in , int i){
+    
+    // base condition
+    if(in[i] == '\0'){
+        cout<<in<<endl;
+        return ;
     }
-    s[i] = '\0';
-    return i;
+
+
+    // recursive calls
+    for(int j=i ; in[j]!= '\0' ; j++ ){
+        swap(in[i] , in[j]);
+        printAllPermutation(in,i+1);
+        // backtracking
+        swap(in[i],in[j]);
+    }
+
 }
-int main()
-{
-    char s1[100], s2[100];
 
-    int len1 = fillCharArray(s1);
-    int len2 = fillCharArray(s2);
 
-    if (len1 != len2)
-    {
-        cout << "String are not in Permutation.";
-        return 0;
-    }
 
-    // compare two char array using frequency array
-    int arr[26] = {0};
 
-    for (int i = 0; i < len1; i++)
-    {
-        arr[s1[i] - 65] = arr[s1[i] - 65] + 1;
-    }
+int main(){
 
-    for (int i = 0; i < len2; i++)
-    {
-        arr[s2[i] - 65] = arr[s2[i] - 65] - 1;
-    }
+    char in[100];
+    cin>>in;
+    char out[100];
 
-    // if there is a single non zero value in frequency array then its not in permutation.
+    printAllPermutation(in,0);
 
-    for (int i = 0; i < 26; i++)
-    {
-        if (arr[i] != 0)
-        {
-            cout << "Both string are not in permutation.";
-            return 0;
-        }
-    }
-    cout << "Both strings are in Permutation";
+
     return 0;
 }
